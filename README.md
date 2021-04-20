@@ -1,10 +1,1 @@
-# TIL
-# TIL
-# TIL
-# TIL
-# TIL
-# TIL
-# TIL
-# TIL
-# TIL
-# TIL
+# hello world
