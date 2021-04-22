@@ -1,0 +1,74 @@
+import * as THREE from 'https://unpkg.com/three/build/three.module.js'
+
+let camera, scene, renderer;
+let geometry, material, line;
+
+init();
+
+function init() {
+
+    camera = new THREE.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 0.01, 1000 );
+    camera.position.z = 100;
+
+    scene = new THREE.Scene();
+
+    const points = [
+      new THREE.Vector3(-10, 0, 0),
+      new THREE.Vector3(-5, 0, 10),
+      new THREE.Vector3(5, 0, 10),
+      new THREE.Vector3(10, 0, 0),
+      new THREE.Vector3(5, 0, -10),
+      new THREE.Vector3(-5, 0, -10),
+      new THREE.Vector3(-10, 0, 0),
+      new THREE.Vector3(0, 25, 0),
+      new THREE.Vector3(-5, 0, 10),
+      new THREE.Vector3(0, 25, 0),
+      new THREE.Vector3(5, 0, 10),
+      new THREE.Vector3(0, 25, 0),
+      new THREE.Vector3(10, 0, 0),
+      new THREE.Vector3(0, 25, 0),
+      new THREE.Vector3(5, 0, -10),
+      new THREE.Vector3(0, 25, 0),
+      new THREE.Vector3(5, 0, -10),
+      new THREE.Vector3(0, 25, 0),
+      new THREE.Vector3(-5, 0, -10),
+      new THREE.Vector3(0, 25, 0),
+      new THREE.Vector3(-10, 0, 0),
+      new THREE.Vector3(0, -25, 0),
+      new THREE.Vector3(-5, 0, 10),
+      new THREE.Vector3(0, -25, 0),
+      new THREE.Vector3(5, 0, 10),
+      new THREE.Vector3(0, -25, 0),
+      new THREE.Vector3(10, 0, 0),
+      new THREE.Vector3(0, -25, 0),
+      new THREE.Vector3(5, 0, -10),
+      new THREE.Vector3(0, -25, 0),
+      new THREE.Vector3(5, 0, -10),
+      new THREE.Vector3(0, -25, 0),
+      new THREE.Vector3(-5, 0, -10),
+      new THREE.Vector3(0, -25, 0),
+      new THREE.Vector3(-10, 0, 0),
+    ];
+
+    geometry = new THREE.BufferGeometry().setFromPoints(points);
+    // geometry = new THREE.BoxGeometry( 0.2, 0.2, 0.2 );
+    material = new THREE.LineBasicMaterial({ color: '#38b000' });
+
+    line = new THREE.Line( geometry, material );
+    scene.add( line );
+
+    renderer = new THREE.WebGLRenderer( { antialias: true } );
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    renderer.setAnimationLoop( animation );
+    document.body.appendChild( renderer.domElement );
+
+}
+
+function animation( time ) {
+
+    // line.rotation.x = time / 2000;
+    line.rotation.y = time / 1000;
+
+    renderer.render( scene, camera );
+
+}
